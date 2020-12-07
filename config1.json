@@ -8,7 +8,8 @@
         "value.converter":"org.apache.kafka.connect.storage.StringConverter",
         "connection.uri":"mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?retryWrites=true&w=majority",
         "database":"test",
-        "collection":"test",
-        "topic.prefix": "mongo"
+        "collection":"testCopyExisting",
+        "topic.prefix": "mongo",
+        "copy.existing": true
     }
   }
