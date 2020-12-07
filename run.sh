@@ -65,9 +65,10 @@ docker-compose exec mongo1 /usr/bin/mongo --eval '''if (rs.status()["ok"] == 0) 
 
 rs.conf();'''
 
-read -r -p "Install latest MongoDB Connector?? [y/N] " response
-read -r -p "Are you sure? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+DEFAULT="Y"
+read -r -p "Install latest MongoDB Connector?? [Y/n] " RESPONSE
+RESPONSE=${RESPONSE:-${DEFAULT}}
+if [[ "$RESPONSE" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
     docker-compose exec connect confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest/
     docker-compose restart connect
@@ -92,8 +93,8 @@ Examine the topics in the Kafka UI: http://localhost:9021
 Examine the collections:
   - In your shell run: docker-compose exec mongo1 /usr/bin/mongo
 
-Manually install connector:
----------------------------
+Manually install a connector:
+-----------------------------
 docker-compose exec connect confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.3.0/
 docker-compose restart connect
 
@@ -105,7 +106,7 @@ Examples:
 List connectors: curl -X GET http://localhost:8083/connectors
 Add a connector: curl -X POST -H "Content-Type: application/json" -d @config1.json  http://localhost:8083/connectors
 Reconfigure a connector: curl -X PUT -H "Content-Type: application/json" -d @config2.json  http://localhost:8083/connectors
-Delete a connector: curl -X DELETE http://localhost:8083/connectors/mongo-test-connector
+Delete a connector: curl -X DELETE http://localhost:8083/connectors/mongo-connector-test
 
 ==============================================================================================================
 
