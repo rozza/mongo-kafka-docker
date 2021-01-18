@@ -90,14 +90,16 @@ echo -e '''
 ==============================================================================================================
 Examine the topics in the Kafka UI: http://localhost:9021
 
-Examine the collections:
-  - In your shell run: docker-compose exec mongo1 /usr/bin/mongo
+Add the sink and the source:
+curl -X POST -H "Content-Type: application/json" -d @sink.json  http://localhost:8083/connectors
+curl -X POST -H "Content-Type: application/json" -d @source.json  http://localhost:8083/connectors
 
-Manually install a connector:
------------------------------
-docker-compose exec connect confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.3.0/
-docker-compose restart connect
+Add docs to the "source" database: docker-compose exec mongo1 /usr/bin/mongo
 
+They will show up in the "sink" database!
+
+
+ ============================================================================================================
  ============================================================================================================
 
 Rest API: https://docs.confluent.io/current/connect/references/restapi.html
@@ -109,7 +111,6 @@ Reconfigure a connector: curl -X PUT -H "Content-Type: application/json" -d @con
 Delete a connector: curl -X DELETE http://localhost:8083/connectors/mongo-connector-test
 
 ==============================================================================================================
-
 
 
 Use <ctrl>-c to quit'''

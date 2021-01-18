@@ -1,1 +1,0 @@
-Add Kafka connect plugins / connectors here.

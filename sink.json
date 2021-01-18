@@ -1,0 +1,15 @@
+{
+  "name": "mongo-connector-sink",
+  "config": {
+    "tasks.max": 1,
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "connection.uri": "mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?retryWrites=true&w=majority",
+    "database": "sink",
+    "topics": "sourceTopic",
+    "namespace.mapper": "com.mongodb.kafka.connect.sink.namespace.mapping.FieldPathNamespaceMapper",
+    "namespace.mapper.value.collection.field": "ns.coll",
+    "change.data.capture.handler": "com.mongodb.kafka.connect.sink.cdc.mongodb.ChangeStreamHandler"
+  }
+}
