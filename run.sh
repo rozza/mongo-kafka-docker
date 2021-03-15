@@ -95,7 +95,11 @@ Examine the collections:
 
 Manually install a connector:
 -----------------------------
-docker-compose exec connect confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.3.0/
+docker-compose exec connect confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.4.0/
+or 
+docker-compose exec connect confluent-hub install --no-prompt /usr/share/confluent-plugins/mongodb-kafka-connect-mongodb-1.5.0-SNAPSHOT.zip
+
+then:
 docker-compose restart connect
 
  ============================================================================================================
@@ -104,9 +108,11 @@ Rest API: https://docs.confluent.io/current/connect/references/restapi.html
 
 Examples: 
 List connectors: curl -X GET http://localhost:8083/connectors
-Add a connector: curl -X POST -H "Content-Type: application/json" -d @config1.json  http://localhost:8083/connectors
-Reconfigure a connector: curl -X PUT -H "Content-Type: application/json" -d @config2.json  http://localhost:8083/connectors
+Add a connector: curl -X POST -H "Content-Type: application/json" -d @mongoSourceConfig.json  http://localhost:8083/connectors
+Reconfigure a connector: curl -X PUT -H "Content-Type: application/json" -d @mongoSourceConfigAlt.json  http://localhost:8083/connectors
+Restart a connector: curl -X POST http://localhost:8083/connectors/mongo-connector-test/restart
 Delete a connector: curl -X DELETE http://localhost:8083/connectors/mongo-connector-test
+
 
 ==============================================================================================================
 
