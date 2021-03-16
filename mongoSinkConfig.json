@@ -1,0 +1,17 @@
+{
+    "name": "mongo-connector-test-sink",
+    "config": {
+        "topics":"mongo_topic",
+        "tasks.max":1,
+        "connector.class":"com.mongodb.kafka.connect.MongoSinkConnector",
+        "key.converter":"org.apache.kafka.connect.storage.StringConverter",
+        "value.converter":"org.apache.kafka.connect.storage.StringConverter",
+        "connection.uri":"mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?retryWrites=true&w=majority",
+        "database":"test",
+        "collection":"test",
+        "max.num.retries":2,
+        "retries.defer.timeout":5000,
+        "document.id.strategy":"com.mongodb.kafka.connect.sink.processor.id.strategy.BsonOidStrategy",
+        "post.processor.chain":"com.mongodb.kafka.connect.sink.processor.DocumentIdAdder"
+    }
+}

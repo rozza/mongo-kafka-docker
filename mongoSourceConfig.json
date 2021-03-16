@@ -1,7 +1,6 @@
 {
     "name": "mongo-connector-test",
     "config": {
-        "name": "mongo-connector-test",
         "tasks.max":1,
         "connector.class":"com.mongodb.kafka.connect.MongoSourceConnector",
         "key.converter":"org.apache.kafka.connect.storage.StringConverter",
@@ -12,4 +11,4 @@
         "topic.prefix": "mongo",
         "heartbeat.interval.ms": 1000
     }
-  }
+}
