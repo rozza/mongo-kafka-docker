@@ -81,6 +81,10 @@ test_systems_available 8083
 echo -e "\nKafka Topics:"
 curl -X GET "http://localhost:8082/topics" -w "\n"
 
+echo -e "\nKafka Connector Plugins:"
+curl -X GET "http://localhost:8083/connector-plugins/" -w "\n"
+
+
 echo -e "\nKafka Connectors:"
 curl -X GET "http://localhost:8083/connectors/" -w "\n"
 
@@ -95,9 +99,9 @@ Examine the collections:
 
 Manually install a connector:
 -----------------------------
-docker-compose exec connect confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.4.0/
+docker-compose exec connect confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:1.5.0/
 or 
-docker-compose exec connect confluent-hub install --no-prompt /usr/share/confluent-plugins/mongodb-kafka-connect-mongodb-1.5.0-SNAPSHOT.zip
+docker-compose exec connect confluent-hub install --no-prompt /usr/share/confluent-plugins/mongodb-kafka-connect-mongodb-1.7.0-SNAPSHOT.zip
 
 then:
 docker-compose restart connect
